@@ -1,11 +1,204 @@
-/* :root{
-    --heading_font: 'Montserrat', sans-serif;
-} */
+
 
 body {
-    background: url(images/board.jpg) no-repeat center center fixed; 
+  background: url(images/board.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+#myheading {
+  font-family: 'Palette Mosaic', cursive;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+.task-form_container {
+  background: url(images/pattern2.svg) white;
+  height: 100%;
+  color: rgb(0, 1, 88);
+  border-radius: 4px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  background: transparent;
+  border: none;
+  width: 25px;
+  text-align: right;
+  font-size: large;
+
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-bottom: 2px dotted rgba(255, 0, 0, 0.479);
+}
+
+#year {
+  width: 45px;
+}
+
+.paper-button {
+  background-color: #11119b15;
+  border: 4px dashed #11119b;
+  border-radius: 4px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2em;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition-duration: 0.2s;
+}
+
+.paper-button:hover:active {
+  background-color: #11119b;
+  border: 4px dashed #11119b;
+}
+.paper-button:hover {
+  background-color: #2121d8;
+  border: 4px dashed #2121d8;
+  color: white;
+}
+
+#reset {
+  background-color: #c91f1f1a;
+  border: 4px dashed #c91f1f;
+}
+
+#reset:hover {
+  background-color: #c91f1f;
+  color: white;
+}
+
+#reset:hover:active {
+  background-color: #991515;
+  border: 4px dashed #991515;
+}
+
+textarea {
+  background: transparent;
+  width: 100%;
+  height: 143px;
+  resize: none;
+  border: none;
+  font-family: 'Bad Script', cursive;
+  font-size: x-large;
+}
+
+textarea:focus  {
+  border: none;
+  outline: none;
+}
+
+.note {
+  background: url(images/note2.png) center border-box no-repeat;
+  width: 285px;
+  height: 285px;
+  position: relative;
+  animation: fadeS ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.note p {
+  position: absolute;
+  top: 30px;
+  left: 7px;
+  height: 59%;
+  width: 96%;
+  padding-right: 8px;
+  overflow: auto;
+  overflow-wrap: break-word;
+  text-align: justify;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.note div {
+  position: absolute;
+  bottom: 17px;
+  left: 20px;
+  border: 1.5px dashed #b82231;
+  color: #dc3545;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  padding: 2px;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: rgb(218, 169, 80);
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(187, 140, 53);
+}
+
+.note:hover .xbtn {
+  opacity: 1;
+}
+
+.note .xbtn {
+  color:#202020;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  opacity: 0.2;
+}
+
+.xbtn:hover {
+  color:#474747;
+}
+
+.xbtn:active {
+  color:#d80000
+}
+
+@keyframes fadeS {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+#task-label {
+  font-size: large;
+}
+
+label {
+  font-size: large;
+}
+
+.optional {
+  font-weight: lighter;
+  color: rgb(85, 85, 85);
+}
+
+/* @media only screen and (max-width: 600px) {
+  body {
+  }
+} */
+
+.note-container {
+  margin-top: 20px;
 }

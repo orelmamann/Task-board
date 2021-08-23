@@ -1,36 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=q, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=q, initial-scale=1.0" />
     <title>Task Board</title>
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
     <!-- googlefonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&Atkinson+Hyperlegible&family=IBM+Plex+Mono&family=Atkinson+Hyperlegible&family=Bad+Script&display=swap"
+      rel="stylesheet"
+    />
     <!-- css -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <!-- TODO: RESPONSIVE DESIGN -->
+  <body>
     <!-- heading -->
-    <div class="container-fluid">
-        <h1 class="text-center">Your Task Board</h1>
+    <div class="container">
+      <div class="row">
+        <h1 id="myheading" class="text-center">Your Task Board</h1>
+      </div>
+      <!-- form -->
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-7">
+          <div class="task-form_container">
+            <form
+              action="#"
+              onsubmit="saveData(); return false"
+              id="taskform"
+              name="taskform"
+              autocomplete="off"
+            >
+              <div class="float-end">
+                <strong>
+                  <!-- easy solutions that are much better -->
+                  <!-- <input type="datetime-local" -->
+                  <!-- <input type="date" -->
+                  <!-- <input type="time" -->
+                  <fieldset name="due-date">
+                    <sup class="optional">(optional)</sup>
+                    <!-- BONUS TODO: 
+                    auto move to next input, copy to clipboard button on notes-->
+                    <label for="day">DUE DATE :</label>
+                    <input
+                      type="number"
+                      class=""
+                      id="day"
+                      name="day"
+                      min="1"
+                      max="31"
+                      onkeyup="this.value = minmax(this.value, 0, 31)"
+                    />
+                    <label for="month">/</label>
+                    <input
+                      type="number"
+                      class=""
+                      id="month"
+                      name="month"
+                      min="1"
+                      max="12"
+                      onkeyup="this.value = minmax(this.value, 0, 12)"
+                    />
+                    <label for="year">/</label>
+                    <input
+                      type="number"
+                      class=""
+                      id="year"
+                      name="year"
+                      min="2021"
+                      max="2100"
+                      onkeyup="this.value = minmax(this.value, 0, 2100)"
+                    />
+                    <label for="hour">&nbsp;</label>
+                    <input
+                      type="number"
+                      class=""
+                      id="hour"
+                      name="hour"
+                      min="0"
+                      max="23"
+                      onkeyup="this.value = minmax(this.value, 0, 23)"
+                    />
+                    <script></script>
+                    <label for="minute">:</label>
+                    <input
+                      type="number"
+                      class=""
+                      id="minute"
+                      name="minute"
+                      min="0"
+                      max="59"
+                      onkeyup="this.value = minmax3(this.value, 0, 59)"
+                    />
+                  </fieldset>
+                </strong>
+              </div>
+              <br /><br />
+              <sub>
+                <strong>
+                  <label for="task" id="task-label"
+                    >&nbsp;type your task:</label
+                  >
+                </strong>
+              </sub>
+              <textarea
+                name="task"
+                id="task"
+                placeholder="I need to go buy some..."
+                required
+                onKeyup="checkform()"
+              ></textarea>
+              <!-- form buttons -->
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="text-center p-2">
+                    <button form="taskform" class="paper-button" id="reset" type="reset">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="text-center p-2">
+                    <button form="taskform" class="paper-button" id="submit" type="submit">
+                      <i class="bi bi-plus-square-fill"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
     </div>
-    <!-- form -->
-
     <!-- notes -->
+    <div class="container-fluid note-container">
+      <div class="d-flex flex-wrap justify-content-evenly" id="note-area">
+        <!-- <div class="note p-2">
+          <i class="bi bi-x-lg float-end xbtn" onclick="deleteNote(i)"></i>
+          <p>...</p>
+          <div>.../.../...<br />...:...</div>
+        </div> -->
+      </div>
+    </div>
 
     <!-- scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
-    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
