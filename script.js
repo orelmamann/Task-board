@@ -24,11 +24,13 @@ GetNotesFromLocalStorage();
 
 function GetNotesFromLocalStorage() {
     let getn = localStorage.getItem('notes');
-    let parsen = JSON.parse(getn);
-    console.log(parsen);
-    for (let i = 0; i < parsen.length; i++) {
-        let ndata = parsen[i];
-        notes.push(ndata);
+    if (getn != null) {
+        let parsen = JSON.parse(getn);
+        console.log(parsen);
+        for (let i = 0; i < parsen.length; i++) {
+            let ndata = parsen[i];
+            notes.push(ndata);
+        }
     }
     showData();
     placeHolder();
